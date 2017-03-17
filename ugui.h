@@ -17,7 +17,6 @@
 #ifndef __UGUI_H
 #define __UGUI_H
 
-#include "system.h"
 #include "ugui_config.h"
 
 
@@ -883,6 +882,7 @@ typedef struct
 /* Classic functions */
 UG_S16 UG_Init( UG_GUI* g, void (*p)(UG_S16,UG_S16,UG_COLOR), UG_S16 x, UG_S16 y );
 UG_S16 UG_SelectGUI( UG_GUI* g );
+UG_GUI* UG_GetGUI( );
 void UG_FontSelect( const UG_FONT* font );
 void UG_FillScreen( UG_COLOR c );
 void UG_FillFrame( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c );
@@ -903,6 +903,8 @@ void UG_ConsoleSetForecolor( UG_COLOR c );
 void UG_ConsoleSetBackcolor( UG_COLOR c );
 void UG_SetForecolor( UG_COLOR c );
 void UG_SetBackcolor( UG_COLOR c );
+UG_COLOR UG_GetForecolor( );
+UG_COLOR UG_GetBackcolor( );
 UG_S16 UG_GetXDim( void );
 UG_S16 UG_GetYDim( void );
 void UG_FontSetHSpace( UG_U16 s );
