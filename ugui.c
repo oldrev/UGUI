@@ -4604,6 +4604,10 @@ UG_S16 UG_SelectGUI( UG_GUI* g )
    return 1;
 }
 
+UG_GUI* UG_GetGUI( ) {
+    return gui;
+}
+
 void UG_FontSelect( const UG_FONT* font )
 {
    gui->font = *font;
@@ -5034,6 +5038,14 @@ void UG_SetForecolor( UG_COLOR c )
 void UG_SetBackcolor( UG_COLOR c )
 {
    gui->back_color = c;
+}
+
+UG_COLOR UG_GetForecolor( ) {
+    return gui->fore_color;
+}
+
+UG_COLOR UG_GetBackcolor( ) {
+    return gui->back_color;
 }
 
 UG_S16 UG_GetXDim( void )
@@ -5816,9 +5828,23 @@ void UG_DrawBMP( UG_S16 xp, UG_S16 yp, UG_BMP* bmp )
    if ( bmp->bpp == BMP_BPP_16 )
    {
       p = (UG_U16*)bmp->p;
-   }
-   else
-   {
+   } else if ( bmp->bpp == BMP_BPP_1 ) {
+       UG_U8* p1 = (UG_U8*)bmp->p;
+       c = bmp->colors;
+	for(y=0;y<bmp->height;y++){
+	  for(x=0;x<bmp->width;x++) {
+	      //int by = (x+y*bmp->width) / 8;
+	      //int bi = x+y*bmp->width & 8;
+	      //if ( ((p1[by] >> bi) & 1) == 1 )
+	      if ( p1[x+y*bmp->height] == 0 )
+		  c = C_BLACK;
+	      else
+		  c = C_YELLOW;//bmp->colors;
+	    UG_DrawPixel( xp+x , yp+y , c );
+	  }
+       }
+       return;
+   } else {
       return;
    }
 
