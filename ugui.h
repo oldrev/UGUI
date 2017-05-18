@@ -886,6 +886,8 @@ UG_GUI* UG_GetGUI( );
 void UG_FontSelect( const UG_FONT* font );
 void UG_FillScreen( UG_COLOR c );
 void UG_FillFrame( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c );
+void UG_DrawTriangle(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_U8 h, UG_COLOR c );
+void UG_FillTriangle( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_U8 h, UG_COLOR c );
 void UG_FillRoundFrame( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_S16 r, UG_COLOR c );
 void UG_DrawMesh( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c );
 void UG_DrawFrame( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c );
