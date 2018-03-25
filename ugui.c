@@ -4749,7 +4749,7 @@ void UG_DrawTriangle( UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_U8 h, UG_CO
 
 void UG_FillTriangle(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_U8 h, UG_COLOR c )
 {
-   UG_S16 n,m;
+   UG_S16 n;
 
    /* Is hardware acceleration available? */
    /*if ( gui->driver[DRIVER_FILL_FRAME].state & DRIVER_ENABLED )
@@ -5406,9 +5406,9 @@ void _UG_PutChar( char chr, UG_S16 x, UG_S16 y, UG_COLOR fc, UG_COLOR bc, const 
 			  for( i=0;i<actual_char_width;i++ )
 			  {
 				 b = font->p[index++];
-				 color = (((fc & 0xFF) * b + (bc & 0xFF) * (256 - b)) >> 8) & 0xFF |//Blue component
-				         (((fc & 0xFF00) * b + (bc & 0xFF00) * (256 - b)) >> 8)  & 0xFF00|//Green component
-				         (((fc & 0xFF0000) * b + (bc & 0xFF0000) * (256 - b)) >> 8) & 0xFF0000; //Red component
+				 color = ((((fc & 0x0000FF) * b + (bc & 0x0000FF) * (256 - b)) >> 8) & 0x0000FF) |//Blue component
+				         ((((fc & 0x00FF00) * b + (bc & 0x00FF00) * (256 - b)) >> 8) & 0x00FF00) |//Green component
+				         ((((fc & 0xFF0000) * b + (bc & 0xFF0000) * (256 - b)) >> 8) & 0xFF0000); //Red component
 				 push_pixel(color);
 			  }
 			  index += font->char_width - actual_char_width;
@@ -5455,9 +5455,9 @@ void _UG_PutChar( char chr, UG_S16 x, UG_S16 y, UG_COLOR fc, UG_COLOR bc, const 
             for( i=0;i<actual_char_width;i++ )
             {
                b = font->p[index++];
-               color = (((fc & 0xFF) * b + (bc & 0xFF) * (256 - b)) >> 8) & 0xFF |//Blue component
-                       (((fc & 0xFF00) * b + (bc & 0xFF00) * (256 - b)) >> 8)  & 0xFF00|//Green component
-                       (((fc & 0xFF0000) * b + (bc & 0xFF0000) * (256 - b)) >> 8) & 0xFF0000; //Red component
+               color = ((((fc & 0x0000FF) * b + (bc & 0x0000FF) * (256 - b)) >> 8) & 0x0000FF) |//Blue component
+                       ((((fc & 0x00FF00) * b + (bc & 0x00FF00) * (256 - b)) >> 8) & 0x00FF00) |//Green component
+                       ((((fc & 0xFF0000) * b + (bc & 0xFF0000) * (256 - b)) >> 8) & 0xFF0000); //Red component
                gui->pset(xo,yo,color);
                xo++;
             }
